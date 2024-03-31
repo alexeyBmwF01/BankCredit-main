@@ -25,8 +25,8 @@ String url = "jdbc:mysql://localhost:3306/mysql";
     String pass = "2125930Bmw";
 
     @Override
-    public List<Bank> getBankList()
-    {List<Bank> list = new ArrayList<>();
+    public List<Bank> getBankList() {
+        List<Bank> list = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, login, pass)) {
             Statement statement = connection.createStatement();
             statement.execute("use mydb");

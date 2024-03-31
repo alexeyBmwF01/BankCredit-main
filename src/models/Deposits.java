@@ -1,5 +1,8 @@
 package models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Deposits {
     private int id;
     private String DepositsName;
@@ -10,6 +13,16 @@ public class Deposits {
         DepositsName = depositsName;
         DepositsBid = depositsBid;
     }
+
+    public Deposits(ResultSet rs) throws SQLException {
+        setId(rs.getInt("iddeposits"));
+        setDepositsName(rs.getString("depositsName"));
+        setDepositsBid(rs.getInt("depositsBid"));
+    }
+    public Deposits(){
+
+    }
+
 
     public int getId() {
         return id;
@@ -37,6 +50,6 @@ public class Deposits {
 
     @Override
     public String toString() {
-        return id + DepositsName + DepositsBid;
+        return id + ". " + DepositsName + " - " + DepositsBid + "%";
     }
 }
