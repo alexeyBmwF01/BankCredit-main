@@ -2,7 +2,6 @@ package services.impl;
 
 import DTO.CreditDTO;
 import mappers.Mapper;
-import mappers.impl.BankMapperImpl;
 import mappers.impl.CreditMapperImpl;
 import models.Credit;
 import repository.CreditRepository;
@@ -20,7 +19,17 @@ public class CreditServicesImpl implements CreditServicesRepository {
     public List<CreditDTO> getListCreditDTO() {
         List<CreditDTO> resList = new ArrayList<>();
         List<Credit> credits = creditRepository.getCreditList();
-        for (Credit c: credits) {
+        for (Credit c : credits) {
+            resList.add((CreditDTO) mapperCredit.fromModelToDTO(c));
+        }
+        return resList;
+    }
+
+    @Override
+    public List<CreditDTO> getBestListCreditDTO() {
+        List<CreditDTO> resList = new ArrayList<>();
+        List<Credit> credits = creditRepository.getBestCreditList();
+        for (Credit c : credits) {
             resList.add((CreditDTO) mapperCredit.fromModelToDTO(c));
         }
         return resList;
