@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CreditServicesRepository {
     List<CreditDTO> getListCreditDTO();
+    List<CreditDTO> getBestListCreditDTO();
 }
