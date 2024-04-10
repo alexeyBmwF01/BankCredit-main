@@ -39,6 +39,6 @@ public class CreditDTO {
 
     @Override
     public String toString() {
-        return id + " " + nameCredit + " " + creditsBid;
+        return id + ".- " + nameCredit + " " + creditsBid + "%";
     }
 }
