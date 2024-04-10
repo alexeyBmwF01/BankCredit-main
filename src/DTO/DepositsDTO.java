@@ -40,6 +40,6 @@ public class DepositsDTO {
 
     @Override
     public String toString() {
-        return  id + DepositsName + DepositsBid;
+        return  id + ".- "  + DepositsName + " " + DepositsBid + " %";
     }
 }
