@@ -44,4 +44,23 @@ String url = "jdbc:mysql://localhost:3306/mysql";
         }
         return list;
     }
+
+    @Override
+    public List<Credit> getBestCreditList() {
+        List<Credit> list = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(url, login, pass)) {
+            Statement statement = connection.createStatement();
+            statement.execute("use mydb");
+            PreparedStatement pr = connection.prepareStatement("select * from credits order by  CreditsBid asc limit 3");
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                list.add(new Credit(rs));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
