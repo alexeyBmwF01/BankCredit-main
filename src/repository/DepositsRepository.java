@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface DepositsRepository {
     List <Deposits> getListDeposits();
+    List <Deposits> getListBestDeposits();
 }
