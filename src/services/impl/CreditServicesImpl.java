@@ -29,9 +29,13 @@ public class CreditServicesImpl implements CreditServicesRepository {
     public List<CreditDTO> getBestListCreditDTO() {
         List<CreditDTO> resList = new ArrayList<>();
         List<Credit> credits = creditRepository.getBestCreditList();
+        long start = System.currentTimeMillis();
         for (Credit c : credits) {
             resList.add((CreditDTO) mapperCredit.fromModelToDTO(c));
         }
+        long end = System.currentTimeMillis();
+        System.out.println("время исполенния getBestListCreditDTO " + (end - start));
+
         return resList;
     }
 }
