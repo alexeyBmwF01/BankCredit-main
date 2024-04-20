@@ -1,5 +1,6 @@
 package repository.impl;
 
+import db.DataSource;
 import models.Bank;
 import models.Credit;
 import repository.CreditRepository;
@@ -48,7 +49,7 @@ String url = "jdbc:mysql://localhost:3306/mysql";
     @Override
     public List<Credit> getBestCreditList() {
         List<Credit> list = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(url, login, pass)) {
+        try (Connection connection = DataSource.getConnection()) {
             Statement statement = connection.createStatement();
             statement.execute("use mydb");
             PreparedStatement pr = connection.prepareStatement("select * from credits order by  CreditsBid asc limit 3");
