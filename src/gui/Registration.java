@@ -3,8 +3,6 @@ package gui;
 
 import models.Client;
 
-import java.io.File;
-import java.sql.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,45 +13,47 @@ public class Registration {
         boolean isItCorrectData = false;
         Scanner sc = new Scanner(System.in);
         String name, lastName, email;
-        System.out.println("введите имя");
         while (!isItCorrectData) {
-            name = sc.nextLine();
             Client client = new Client();
-            if (isBadString(name) || (!isValidName(name))) {
-                System.out.println("не верно введено имя");
-                continue;
+            do {
+                name = sc.nextLine();
+                if (isBadString(name) || !isValidName(name))
+                    System.out.println("не верно введено имя");
             }
+            while (isBadString(name) || !isValidName(name));
+
             client.setNameClient(name);
+
             System.out.println("введите фамилию");
-            lastName = sc.nextLine();
-            if (isBadString(lastName) || !isValidLastName(lastName)) {
-                System.out.println("не верно введена фамилия");
-                continue;
+            do {
+                lastName = sc.nextLine();
+                if (isBadString(lastName) || !isValidLastName(lastName))
+                    System.out.println("не верно введена фамилия");
             }
+            while (isBadString(lastName) || !isValidLastName(lastName));
+
             client.setLastName(lastName);
+
+
             System.out.println("введите электонную почту");
-            email = sc.nextLine();
-            if (isBadString(email) || (!isValidemail(email))) {
-                System.out.println("не верно введена электронная почта");
-                continue;
-            } else {
-                client.setEmail(email);
-                if (client.isEmpty()) {
-                    System.out.println("не верно введены данные клиента");
-                }
+            do {
+                email = sc.nextLine();
+                if (isBadString(email) || !isValidemail(email))
+                    System.out.println("не верно введена электронная почта");
             }
-            isItCorrectData = true;
+            while (isBadString(email) || !isValidemail(email));
+
+            client.setEmail(email);
+
+            if (client.isEmpty()) {
+                System.out.println("не верно введены данные клиента");
+            }
         }
-//        try (Connection connection = DriverManager.getConnection(String.valueOf(url))) {
-//            Statement statement = connection.createStatement();
-//            statement.execute("use mydb");
-//            PreparedStatement pr = connection.prepareStatement("insert client(idClient, nameClient)" +
-//                    " values( ? , ?");
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-     }
+
+
+        isItCorrectData = true;
+    }
+
 
     private boolean isBadString(String s) {
         if (s.trim().isEmpty())
@@ -62,19 +62,19 @@ public class Registration {
     }
 
     private boolean isValidName(String s) {
-        Pattern pattern = Pattern.compile("\\w{3,}", Pattern.UNICODE_CHARACTER_CLASS);
+        Pattern pattern = Pattern.compile("\\w{2,}", Pattern.UNICODE_CHARACTER_CLASS);
         Matcher matcher = pattern.matcher(s);
         return matcher.matches();
     }
 
     private boolean isValidLastName(String s) {
-        Pattern pattern = Pattern.compile("\\w{5,}", Pattern.UNICODE_CHARACTER_CLASS);
+        Pattern pattern = Pattern.compile("\\w{2,}", Pattern.UNICODE_CHARACTER_CLASS);
         Matcher matcher = pattern.matcher(s);
         return matcher.matches();
     }
 
     private boolean isValidemail(String s) {
-        Pattern pattern = Pattern.compile("\\w{3,}@\\w+.\\w{2,5}",Pattern.UNICODE_CHARACTER_CLASS);
+        Pattern pattern = Pattern.compile("\\w{3,}@\\w+.\\w{1,3}", Pattern.UNICODE_CHARACTER_CLASS);
         Matcher matcher = pattern.matcher(s);
         return matcher.matches();
 
