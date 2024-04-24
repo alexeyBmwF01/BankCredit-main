@@ -22,15 +22,15 @@ public class CreditRepImpl implements CreditRepository {
 //            e.printStackTrace();
 //        }
 //    }
-String url = "jdbc:mysql://localhost:3306/mysql";
-    String login = "root";
-    String pass = "2125930Bmw";
+//String url = "jdbc:mysql://localhost:3306/mysql";
+//    String login = "root";
+//    String pass = "2125930Bmw";
 
 
     @Override
     public List<Credit> getCreditList() {
         List<Credit> list = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(url, login, pass)) {
+        try (Connection connection = DataSource.getConnection()) {
             Statement statement = connection.createStatement();
             statement.execute("use mydb");
             PreparedStatement pr = connection.prepareStatement("select * from credits");
