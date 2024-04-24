@@ -12,12 +12,7 @@ public class DataSource {
 
 
     static {
-//        try {
-//            Class.forName("com.mysql.jdbс.Driver");
-//        } catch (ClassNotFoundException e){
-//            throw new RuntimeException("driver error");
-//        }
-        config.setDriverClassName("com.mysql.jdbс.Driver");
+        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         config.setJdbcUrl("jdbc:mysql://localhost:3306/mysql");
         config.setUsername("root");
         config.setPassword("2125930Bmw");
