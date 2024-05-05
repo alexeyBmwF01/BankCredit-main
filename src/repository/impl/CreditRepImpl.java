@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CreditRepImpl implements CreditRepository {
-//    File file = new File("src/resources/Connection.txt");
+//    File file = new File("src/resources/Connection.properties");
 //    Scanner sc;
 //    {
 //        try {

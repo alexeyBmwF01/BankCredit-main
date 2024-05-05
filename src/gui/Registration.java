@@ -9,12 +9,13 @@ import java.util.regex.Pattern;
 
 public class Registration {
     public void beginRegistration() {
-        //File file = new File("src/resources/Connection.txt");
+        //File file = new File("src/resources/Connection.properties");
         boolean isItCorrectData = false;
         Scanner sc = new Scanner(System.in);
         String name, lastName, email;
         while (!isItCorrectData) {
             Client client = new Client();
+            System.out.println("введите имя");
             do {
                 name = sc.nextLine();
                 if (isBadString(name) || !isValidName(name))
@@ -48,10 +49,10 @@ public class Registration {
             if (client.isEmpty()) {
                 System.out.println("не верно введены данные клиента");
             }
+            isItCorrectData = true;
         }
 
 
-        isItCorrectData = true;
     }
 
 

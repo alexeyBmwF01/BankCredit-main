@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ClientRepImpl implements ClientRepository {
-    File file = new File("src/resources/Connection.txt");
+    File file = new File("src/resources/Connection.properties");
     Scanner sc;
 
     {
